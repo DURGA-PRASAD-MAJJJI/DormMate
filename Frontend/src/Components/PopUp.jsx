@@ -37,10 +37,10 @@ const PopUp = () => {
                     >
                         {/* Grid Buttons */}
                         <div className="grid grid-cols-2 gap-4 w-full">
-                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,140,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page1")}>Box 1</div>
-                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,69,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page2")}>Box 2</div>
-                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-yellow-500 to-yellow-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,215,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page3")}>Box 3</div>
-                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-purple-500 to-purple-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(128,0,128,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page4")}>Box 4</div>
+                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,140,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page1")}>Floor I</div>
+                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,69,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page2")}>Floor II</div>
+                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-yellow-500 to-yellow-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(255,215,0,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page3")}>Floor III</div>
+                            <div className="p-6 rounded-lg shadow-md flex justify-center items-center text-white font-semibold bg-gradient-to-r from-purple-500 to-purple-700 hover:scale-105 hover:shadow-[0px_0px_15px_rgba(128,0,128,0.6)] transition-all duration-300 cursor-pointer" onClick={() => handleBlockClick("/page4")}>Floor IV</div>
                         </div>
 
                         {/* Close Button */}

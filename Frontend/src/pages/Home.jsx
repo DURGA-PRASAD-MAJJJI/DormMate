@@ -8,6 +8,7 @@ import Facilities from '../Components/Facilities'
 import L1 from '../Components/L1'
 import PopUp from '../Components/PopUp'
 import Page1 from '../Components/Page1'
+import Canteen from '../Components/Canteen'
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       {/* <Menu/> */}
       <PopUp/>
       {/* <Page1/> */}
+      <Canteen/>
       <Below />
     </div>
   )
