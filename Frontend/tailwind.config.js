@@ -6,13 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        'primary':"#f7931e"
+      colors: {
+        primary: "#f7931e",
       },
-      gridTemplateColumns:{
-        'auto':'repeat(auto-fill, minmax(200px,1fr))'
-      }
+      gridTemplateColumns: {
+        auto: "repeat(auto-fill, minmax(200px, 1fr))",
+      },
     },
   },
   plugins: [],
-}
+};

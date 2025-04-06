@@ -5,25 +5,35 @@
 @tailwind utilities;
 
 * {
-    font-family: Outfit;
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Make body & root take full screen and allow scroll */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  @apply bg-black text-white;
+}
+
+/* ✅ Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
 body {
-    @apply bg-black text-white;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-
 
 .active hr {
-    @apply block
+  @apply block;
 }
 
-::-webkit-scrollbar {
-    @apply hidden
-}
-
-@media (max-width:740px) {
-    .active p {
-        @apply text-white bg-primary
-    }
-
+@media (max-width: 740px) {
+  .active p {
+    @apply text-white bg-primary;
+  }
 }
