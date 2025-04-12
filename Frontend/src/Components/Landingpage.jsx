@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { assets } from "../assets/assets";
-import Navi from "./Navi";
 
 const images = [assets.landing_bg1, assets.bg2, assets.bg3, assets.bg4];
 
@@ -17,8 +16,7 @@ const Landingpage = () => {
 
   return (
     <>
-      <Navi />
-      <div className="relative w-screen" style={{ height: "calc(100vh - 80px)" }}>
+      <div className="relative w-screen overflow-hidden" style={{ height: "calc(100vh - 80px)" }}>
         {images.map((image, index) => (
           <motion.img key={index} src={image} alt="" className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: index === currentImageIndex ? 1 : 0 }} transition={{ duration: 1, ease: "easeInOut" }} />
         ))}

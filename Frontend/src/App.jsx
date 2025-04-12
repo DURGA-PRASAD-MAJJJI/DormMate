@@ -14,10 +14,7 @@ import Canteen from "./Components/Canteen";
 const App = () => {
     return (
         <div className="min-h-screen bg-black text-white">
-            {/* Fixed Navbar */}
             <Navi />
-
-            {/* Page Content with top padding to push below navbar */}
             <div className="pt-[100px] px-4">
                 <Routes>
                     <Route path="/" element={<Home />} />

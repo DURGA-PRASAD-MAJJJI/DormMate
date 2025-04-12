@@ -13,16 +13,16 @@ const movies = [
 const Facilities = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     return (
-        <div className="w-full h-120 relative pt-4 flex flex-col items-center bg-black">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500 mb-6 text-center uppercase">Facilities Available</h1>
+        <div className="w-full h-120 relative flex flex-col items-center overflow-none ">
+            {/* <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500 mb-6 text-center uppercase">Facilities Available</h1> */}
             {!selectedMovie && (
-                <div className="relative w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-700">
-                    <motion.div className="flex space-x-6 flex-nowrap w-max" initial={{ x: 0 }} animate={{ x: "-50%" }} transition={{ repeat: Infinity, duration: 15, ease: "linear" }}>
+                <div className="absolute top-[-120px] w-full overflow-x-scroll">
+                    <motion.div className="flex space-x-6 flex-nowrap w-max " initial={{ x: 0 }} animate={{ x: "-50%" }} transition={{ repeat: Infinity, duration: 15, ease: "linear" }}>
                         {[...movies, ...movies].map((movie, index) => (
-                            <motion.div key={index} className="w-48 h-64 cursor-pointer border border-orange-500 shadow-md rounded-lg flex-shrink-0 bg-white transform hover:scale-105 transition duration-300 flex flex-col items-center justify-center p-4" onClick={() => setSelectedMovie(movie)}>
+                            <motion.div key={index} className="w-50 h-30 cursor-pointer border border-orange-500 shadow-md rounded-lg flex-shrink-0 bg-white transform hover:scale-105 transition duration-300 flex  items-center justify-center p-4" onClick={() => setSelectedMovie(movie)}>
                                 <img src={movie.img} alt={movie.title} className="w-20 h-20 object-cover rounded-lg mb-3 shadow" />
                                 <h3 className="text-lg font-semibold text-orange-600 text-center">{movie.title}</h3>
-                                <p className="text-sm text-gray-700 text-center mt-2">{movie.description}</p>
+                                {/* <p className="text-sm text-gray-700 text-center mt-2">{movie.description}</p> */}
                             </motion.div>
                         ))}
                     </motion.div>

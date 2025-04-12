@@ -1,9 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { members } from "../assets/data";
 
 const Floor = ({ floor }) => {
   const navigate = useNavigate();
+  const floorNumber = parseInt(floor);
+
+  // 9 rooms per floor
+  const roomIds = [...Array(9)].map((_, i) => parseInt(`${floor}0${i + 1}`));
+
+  // Filter only members on this floor
+  const floorMembers = members.filter(member => Math.floor(member.room / 100) === floorNumber);
+
+  // Calculate total capacity
+  let totalCapacity = 0;
+  roomIds.forEach(roomId => {
+    totalCapacity += roomId % 10 === 9 ? 1 : 3;
+  });
+
+  const occupiedSlots = floorMembers.length;
+  const totalRooms = roomIds.length;
+  const emptySlots = totalCapacity - occupiedSlots;
+
   const handleRoomClick = (roomId) => navigate(`/room/${roomId}`);
   const roomColors = [
     "from-orange-500 to-orange-400", "from-orange-600 to-orange-500", "from-orange-700 to-orange-600",
@@ -12,23 +31,55 @@ const Floor = ({ floor }) => {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-black text-white px-4 relative">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-orange-500 mb-6 text-center uppercase tracking-widest">Floor {floor}</h1>
-      <motion.div className="relative w-[90%] max-w-5xl bg-white bg-opacity-10 backdrop-blur-lg border border-orange-500 rounded-2xl shadow-2xl p-6 flex flex-col h-auto md:h-[55vh]" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-        <div className="grid gap-4 w-full h-full text-white font-semibold text-lg md:grid-cols-5 md:grid-rows-2 sm:grid-cols-1 sm:grid-rows-9">
-          {[...Array(9)].map((_, index) => {
-            const roomId = parseInt(`${floor}${0}${index + 1}`);
-            return (
-              <motion.div key={roomId} onClick={() => handleRoomClick(roomId)} className={`bg-gradient-to-r ${roomColors[index]} flex justify-center items-center rounded-lg shadow-lg hover:scale-105 hover:shadow-[0px_0px_20px_rgba(255,100,0,0.8)] transition-transform p-6 h-20 md:h-full cursor-pointer text-center text-lg sm:text-xl md:text-2xl tracking-wide`}>
-                Room {roomId}
-              </motion.div>
-            );
-          })}
+    <div className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-8 text-white">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-wide uppercase drop-shadow-lg">Floor {floor}</h1>
+
+      {/* Summary */}
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-10 text-center w-full max-w-4xl shadow-lg">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm md:text-base font-semibold text-white">
+          <Stat label="Total Rooms" value={totalRooms} />
+          <Stat label="Total Capacity" value={totalCapacity} />
+          <Stat label="Occupied Slots" value={occupiedSlots} />
+          <Stat label="Empty Slots" value={emptySlots} />
         </div>
+      </div>
+
+      {/* Room Cards */}
+      <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full max-w-6xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {roomIds.map((roomId, index) => (
+          <motion.div
+            key={roomId}
+            onClick={() => handleRoomClick(roomId)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className={`rounded-xl p-6 cursor-pointer text-center font-bold text-xl bg-gradient-to-br ${roomColors[index]} shadow-xl transition-all duration-300`}
+          >
+            Room {roomId}
+          </motion.div>
+        ))}
       </motion.div>
-      <button onClick={() => navigate(-1)} className="fixed bottom-6 right-6 sm:bottom-4 sm:right-4 bg-[#ff8c00] text-black px-6 py-3 rounded-full font-bold text-sm sm:text-base hover:bg-[#ff6f00] transition-all shadow-md hover:shadow-[0_0_20px_rgba(255,140,0,0.7)] hover:scale-105 z-50">← Back</button>
+
+      {/* Back Button */}
+      <motion.button
+        onClick={() => navigate(-1)}
+        whileHover={{ scale: 1.05 }}
+        className="mt-10 px-6 py-3 rounded-full bg-white text-orange-600 font-bold text-sm md:text-base shadow-md hover:shadow-xl transition duration-300"
+      >
+        ← Back
+      </motion.button>
     </div>
   );
 };
+
+const Stat = ({ label, value }) => (
+  <div className="flex flex-col items-center">
+    <span className="text-orange-400 text-xl">{value}</span>
+    <span className="text-white/70">{label}</span>
+  </div>
+);
 
 export default Floor;

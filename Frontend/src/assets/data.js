@@ -324,5 +324,20 @@ export const members = [
         room: 302,
         sharing: '3-Sharing',
         pay: true
+    },
+    {
+        _id: 'member20',
+        name: 'Kalyan Kumar',
+        email: 'kalyan@example.com',
+        password: 'password123',
+        mobile: '9876543229',
+        image: m20,
+        age: 22,
+        profession: 'Student - VIIT, 4th Year',
+        address: '50th Cross, Danavaipeta, Rajahmundry',
+        floor: 3,
+        room: 103,
+        sharing: '3-Sharing',
+        pay: true
     }
 ];

@@ -1,63 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { assets } from "../assets/assets";
-const images = [
-  assets.landing_bg1,
-  assets.bg2,
-  assets.bg3,
-  assets.bg4,
-];
+
+const images = [assets.landing_bg1, assets.bg2, assets.bg3, assets.bg4];
+
 const Canteen = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [pollResult, setPollResult] = useState({ like: 0, dislike: 0 });
+  const [dateTime, setDateTime] = useState(new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
-    return () => clearInterval(interval);
+    const imageInterval = setInterval(() => setCurrentImageIndex(prev => (prev + 1) % images.length), 5000);
+    const timeInterval = setInterval(() => setDateTime(new Date()), 1000);
+    return () => {
+      clearInterval(imageInterval);
+      clearInterval(timeInterval);
+    };
   }, []);
 
-  const toggleContainer = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleVote = (type) => setPollResult(prev => ({ ...prev, [type]: prev[type] + 1 }));
+
+  const formattedDate = dateTime.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+  const formattedTime = dateTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true });
+  const formattedDay = dateTime.toLocaleDateString(undefined, { weekday: 'long' });
 
   return (
-    <div className="relative w-screen h-screen bg-cover bg-center overflow-hidden">
-      <img src={images[currentImageIndex]} alt="Canteen Background" className="w-full h-full object-cover brightness-50 transition-opacity duration-1000 ease-in-out scale-110" />
+    <div className="relative w-screen h-screen overflow-hidden font-sans flex items-center justify-center bg-black">
+      <img src={images[currentImageIndex]} alt="Background" className="absolute w-full h-full object-cover brightness-[0.3] scale-110 transition-opacity duration-1000 ease-in-out" />
 
-      {/* Canteen Notice Box */}
-      <div 
-        className={`absolute ${isOpen 
-          ? "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-100 w-[300px] p-6 md:w-[200px] md:p-3" 
-          : "top-5 right-5 w-[220px] p-4 md:w-[180px] md:p-2"} 
-        bg-white bg-opacity-30 backdrop-blur-md text-white rounded-2xl shadow-2xl 
-        border border-white border-opacity-40 flex flex-col items-center 
-        cursor-pointer transition-all duration-500 ease-in-out z-10`} 
-        onClick={toggleContainer}
-      >
+      <div className="relative z-10 w-[90%] max-w-[380px] sm:max-w-[420px] bg-white/10 backdrop-blur-2xl border border-white/30 rounded-3xl shadow-2xl text-white flex flex-col justify-between items-center h-[60%] sm:h-[60%]">
 
-        {/* Dish Image */}
-        <div className="w-20 h-20 rounded-xl overflow-hidden shadow-md mb-4 border-2 border-white md:w-16 md:h-16">
-          <img src={assets.idli} alt="Dish Image" className="w-full h-full object-cover" />
+        <div className="flex flex-col items-center justify-center flex-grow w-full px-4 py-5 sm:py-6 space-y-5">
+          <div className="text-center space-y-1">
+            <h2 className="text-yellow-300 text-xl sm:text-2xl font-bold uppercase tracking-widest">Today's Special</h2>
+            <p className="text-sm sm:text-base font-light text-white/90">{formattedDate}</p>
+            <p className="text-sm font-light text-white/80">{formattedDay} • {formattedTime}</p>
+          </div>
+
+          <div className="w-28 h-28 rounded-2xl overflow-hidden shadow-lg border-2 border-white/60">
+            <img src={assets.idli} alt="Dish" className="w-full h-full object-cover" />
+          </div>
+
+          <div className="text-center">
+            <p className="text-yellow-300 font-medium text-sm sm:text-base">Main Dish</p>
+            <h1 className="text-white text-lg sm:text-xl font-bold mt-1">IDLI · ఇడ్లీ · இட்லி</h1>
+          </div>
         </div>
 
-        <h1 className="text-xl font-extrabold uppercase tracking-wide text-center drop-shadow-lg md:text-lg">MENU</h1>
-        <p className="text-xs font-medium opacity-90 md:text-[10px]">📅 Date: <span className="font-semibold">14 March 2025</span></p>
-        <p className="text-xs font-medium opacity-90 md:text-[10px]">⏰ Time: <span className="font-semibold">7:30 AM</span></p>
-        <p className="text-xs font-medium opacity-90 md:text-[10px]">📆 Day: <span className="font-semibold">Monday</span></p>
-
-        <p className="text-base font-bold text-yellow-300 mt-3 md:text-sm">🍽 Dish Name</p>
-        <p className="text-base font-bold text-white mt-1 drop-shadow-lg md:text-sm">IDLI . ఇడ్లీ . இட்லி</p>
-
-        {/* Suggestion Input */}
-        <p className="text-xs font-semibold text-white mt-4 md:text-[10px]">
-          Suggestion:
-          <input
-            type="text"
-            placeholder="Type here..."
-            className="border-b border-white outline-none text-white bg-transparent px-2 w-full mt-1 focus:border-yellow-400 transition duration-200 md:px-1 md:mt-0.5"
-          />
-        </p>
+        <div className="w-full px-5 py-4 bg-white/5 border-t border-white/20">
+          <p className="text-white font-semibold text-center mb-2">How do you like it?</p>
+          <div className="flex justify-center gap-4">
+            <button onClick={() => handleVote('like')} className="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-xl shadow transition text-sm">👍 {pollResult.like}</button>
+            <button onClick={() => handleVote('dislike')} className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-xl shadow transition text-sm">👎 {pollResult.dislike}</button>
+          </div>
+        </div>
       </div>
     </div>
   );
