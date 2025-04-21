@@ -1,28 +1,21 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Navi from './componets/Navi';
-import Header from './componets/Header';
-import Dashboard from './pages/Dashbord';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import AddMember from './componets/AddMember';
-import Staff from './componets/Staff';
+import Dashboard from './pages/Dashbord';
+import Staff from './pages/Staff';
+import MembersPage from './pages/MembersPage';
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<Home/>}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/add-member" element={<AddMember />} />
-                <Route path="/staff" element={<Staff/>} />
-
-              </Route>
-              
-            </Routes>
-          </BrowserRouter>
-    </>
-    
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="members" element={<MembersPage />} />
+          <Route path="staff" element={<Staff />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

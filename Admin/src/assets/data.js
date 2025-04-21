@@ -18,12 +18,7 @@ import m17 from './m17.jpg';
 import m18 from './m18.jpg';
 import m19 from './m19.jpg';
 import m20 from './m20.jpg';
-// import m21 from './m21.jpg';
-// import m22 from './m22.jpg';
-// import m23 from './m23.jpg';
-// import m24 from './m24.jpg';
-// import m25 from './m25.jpg';
-// import m26 from './m26.jpg';
+
 export const members = [
     {
         _id: 'member1',
@@ -38,7 +33,8 @@ export const members = [
         floor: 1,
         room: 101,
         sharing: '3-Sharing',
-        pay: true
+        pay: false,
+        joinDate: '2023-05-01'
     },
     {
         _id: 'member2',
@@ -53,7 +49,8 @@ export const members = [
         floor: 1,
         room: 101,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-06-15'
     },
     {
         _id: 'member3',
@@ -68,7 +65,8 @@ export const members = [
         floor: 1,
         room: 103,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-07-01'
     },
     {
         _id: 'member4',
@@ -83,7 +81,8 @@ export const members = [
         floor: 1,
         room: 104,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-05-10'
     },
     {
         _id: 'member5',
@@ -98,7 +97,8 @@ export const members = [
         floor: 1,
         room: 105,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-08-22'
     },
     {
         _id: 'member6',
@@ -113,7 +113,8 @@ export const members = [
         floor: 1,
         room: 106,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-03-18'
     },
     {
         _id: 'member7',
@@ -128,7 +129,8 @@ export const members = [
         floor: 1,
         room: 107,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-02-10'
     },
     {
         _id: 'member8',
@@ -143,7 +145,8 @@ export const members = [
         floor: 1,
         room: 108,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-04-20'
     },
     {
         _id: 'member9',
@@ -158,7 +161,8 @@ export const members = [
         floor: 1,
         room: 109,
         sharing: 'Single Room',
-        pay: true
+        pay: true,
+        joinDate: '2023-01-12'
     },
     {
         _id: 'member10',
@@ -173,7 +177,8 @@ export const members = [
         floor: 2,
         room: 201,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-06-02'
     },
     {
         _id: 'member11',
@@ -188,7 +193,8 @@ export const members = [
         floor: 2,
         room: 202,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-07-10'
     },
     {
         _id: 'member12',
@@ -203,7 +209,8 @@ export const members = [
         floor: 2,
         room: 203,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-08-05'
     },
     {
         _id: 'member13',
@@ -218,7 +225,8 @@ export const members = [
         floor: 2,
         room: 204,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-05-16'
     },
     {
         _id: 'member14',
@@ -233,7 +241,8 @@ export const members = [
         floor: 2,
         room: 205,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-03-25'
     },
     {
         _id: 'member15',
@@ -248,7 +257,8 @@ export const members = [
         floor: 2,
         room: 206,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-09-03'
     },
     {
         _id: 'member16',
@@ -263,7 +273,8 @@ export const members = [
         floor: 2,
         room: 207,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-06-28'
     },
     {
         _id: 'member17',
@@ -278,7 +289,8 @@ export const members = [
         floor: 2,
         room: 208,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-04-12'
     },
     {
         _id: 'member18',
@@ -293,7 +305,8 @@ export const members = [
         floor: 2,
         room: 209,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-05-25'
     },
     {
         _id: 'member19',
@@ -308,7 +321,8 @@ export const members = [
         floor: 3,
         room: 301,
         sharing: 'Single Room',
-        pay: true
+        pay: true,
+        joinDate: '2023-02-14'
     },
     {
         _id: 'member20',
@@ -323,6 +337,7 @@ export const members = [
         floor: 3,
         room: 302,
         sharing: '3-Sharing',
-        pay: true
+        pay: true,
+        joinDate: '2023-07-19'
     }
 ];

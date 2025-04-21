@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, UserPlus, Menu, X, User2Icon, UserCircle2Icon, UserCog, User2, UserCheckIcon, UserMinus2, UserRoundIcon, UserRoundSearch } from "lucide-react";
+import { LayoutDashboard, UserPlus, Menu, X, User2Icon, UserCircle2Icon, UserCog, User2, UserCheckIcon, UserMinus2, UserRoundIcon, UserRoundSearch, GrabIcon, Group, GroupIcon, LucideGroup } from "lucide-react";
 
 const Navi = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
-    
+
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : 'auto';
         const handleResize = () => window.innerWidth >= 768 && setIsOpen(false);
@@ -24,11 +24,12 @@ const Navi = () => {
                             <li className={`flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:bg-orange-600 cursor-pointer transition-all font-semibold ${activeItem === 'dashboard' ? 'text-orange-400' : ''}`}><LayoutDashboard size={20} /> Dashboard</li>
                         </NavLink>
                         <div className="h-px bg-white/10 mx-2"></div>
-                        <NavLink to="/add-member" onClick={() => { setIsOpen(false); setActiveItem('addMember'); }}>
-                            <li className={`flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:bg-orange-600 cursor-pointer transition-all font-semibold ${activeItem === 'addMember' ? 'text-orange-400' : ''}`}><UserPlus size={20} /> Add Member</li>
+                        <NavLink to="/members" onClick={() => { setIsOpen(false); setActiveItem('members'); }}>
+                            <li className={`flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:bg-orange-600 cursor-pointer transition-all font-semibold ${activeItem === 'TotalMembers' ? 'text-orange-400' : ''}`}><Group size={20} />Total Members</li>
                         </NavLink>
                         <div className="h-px bg-white/10 mx-2"></div>
-<NavLink to="/staff" onClick={() => { setIsOpen(false); setActiveItem('staffMembers'); }}><li className={`flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:bg-orange-600 cursor-pointer transition-all font-semibold ${activeItem === 'staffMembers' ? 'text-orange-400' : ''}`}><UserRoundSearch size={20} /> Staff Members</li></NavLink>
+                        <NavLink to="/staff" onClick={() => { setIsOpen(false); setActiveItem('Staff'); }}>
+                        <li className={`flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:bg-orange-600 cursor-pointer transition-all font-semibold ${activeItem === 'Staff' ? 'text-orange-400' : ''}`}><UserRoundSearch size={20} /> Staff Members</li></NavLink>
                     </ul>
                 </div>
                 <div className="text-sm text-center text-white/60 border-t border-white/10 pt-6 pb-4">© 2025 PG Admin</div>

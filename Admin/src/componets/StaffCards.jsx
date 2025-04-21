@@ -3,71 +3,63 @@ import { User, Briefcase, Clock, Mail, Phone, Star } from 'lucide-react';
 
 const StaffCard = ({ staff, onClick }) => {
   return (
-    <motion.div 
-      whileHover={{ y: -8 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className="w-72 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl overflow-hidden border border-gray-200/50 cursor-pointer transition-all duration-300 hover:shadow-2xl"
-    >
-      {/* Profile Header */}
-      <div className="relative h-40 bg-gradient-to-r from-yellow-300 to-orange-500 flex justify-center items-end pb-6">         <div className="absolute -bottom-12 w-24 h-24 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white">
+    <motion.div whileHover={{ y: -8 }} whileTap={{ scale: 0.98 }}onClick={onClick}className="w-64 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg overflow-hidden border border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl">
+      {/* Company Header */}
+      <div className="bg-[#f7931e] py-2 px-4 text-white text-center">
+        <h3 className="font-bold text-lg">COMPANY NAME</h3>
+        <p className="text-xs">Employee Identification Card</p>
+      </div>
+
+      {/* Profile Section */}
+      <div className="p-4 flex items-center">
+        <div className="w-20 h-20 rounded-md border-2 border-[#f7931e] overflow-hidden bg-white mr-4">
           {staff.image ? (
             <img src={staff.image} alt={staff.name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full bg-indigo-100 flex items-center justify-center">
-              <User className="text-indigo-600" size={40} />
+            <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+              <User className="text-gray-400" size={32} />
             </div>
           )}
         </div>
+        
+        <div>
+          <div className="flex items-center gap-1">
+            <h3 className="text-lg font-bold text-gray-800">{staff.name}</h3>
+            {staff.isManager && <Star className="text-yellow-500 fill-yellow-400" size={14} />}
+          </div>
+          <p className="text-sm text-gray-600">{staff.position}</p>
+          <p className="text-xs text-gray-500 mt-1">ID: {staff.employeeId || 'EMP-0000'}</p>
+        </div>
       </div>
 
-      {/* Staff Details */}
-      <div className="pt-16 px-6 pb-6 text-center">
-        <div className="flex justify-center items-center gap-1 mb-1">
-          <h3 className="text-xl font-bold text-gray-800">{staff.name}</h3>
-          {staff.isManager && <Star className="text-yellow-500 fill-yellow-400" size={16} />}
-        </div>
-        
-        <p className="text-sm text-purple-600 font-medium mb-4">{staff.position}</p>
-        
-        <div className="flex justify-between mb-5 px-4">
-          <div className="text-center">
-            <div className="text-xs text-gray-500 mb-1">Department</div>
-            <div className="text-sm font-medium text-gray-700 flex items-center justify-center gap-1">
-              <Briefcase size={14} className="text-indigo-400" />
-              {staff.department}
-            </div>
+      {/* Details Section */}
+      <div className="px-4 pb-4">
+        <div className="grid grid-cols-2 gap-2 text-sm mb-3">
+          <div className="flex items-center">
+            <Briefcase size={14} className="text-[#f7931e] mr-1" />
+            <span>{staff.department}</span>
           </div>
-          <div className="h-8 w-px bg-gray-200"></div>
-          <div className="text-center">
-            <div className="text-xs text-gray-500 mb-1">Shift</div>
-            <div className="text-sm font-medium text-gray-700 flex items-center justify-center gap-1">
-              <Clock size={14} className="text-indigo-400" />
-              {staff.shift}
-            </div>
+          <div className="flex items-center">
+            <Clock size={14} className="text-[#f7931e] mr-1" />
+            <span>{staff.shift}</span>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-center gap-4">
-          <a 
-            href={`mailto:${staff.email}`} 
-            onClick={e => e.stopPropagation()}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors"
-          >
-            <Mail size={16} />
-          </a>
-          <a 
-            href={`tel:${staff.mobile}`} 
-            onClick={e => e.stopPropagation()}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors"
-          >
-            <Phone size={16} />
-          </a>
-          <button className="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
-            <User size={16} />
-          </button>
+        <div className="border-t border-gray-200 pt-3">
+          <div className="flex items-center text-sm mb-1">
+            <Mail size={14} className="text-[#f7931e] mr-2" />
+            <span className="text-gray-700 truncate">{staff.email}</span>
+          </div>
+          <div className="flex items-center text-sm">
+            <Phone size={14} className="text-[#f7931e] mr-2" />
+            <span className="text-gray-700">{staff.mobile}</span>
+          </div>
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-gray-100 py-2 px-4 text-center text-xs text-gray-600 border-t border-gray-200">
+        Valid until: {staff.expiryDate || '31/12/2025'}
       </div>
     </motion.div>
   );
