@@ -1,10 +1,10 @@
 import logo from './logo.png'
-import chapati from './chapati.jpg'
-import dosa from './dosa.jpg'
-import idli from './idli.jpg'
-import upma from './upma.jpg'
-import uttauppam from './uttauppam.jpg'
-import pulihora from './pulihora.jpg'
+import c1 from './c1.jpg'
+import c2 from './c2.jpg'
+import c3 from './c3.jpg'
+import c4 from './c4.jpg'
+import c5 from './c5.jpg'
+import c6 from './c6.jpg'
 import home from './home.png'
 import cooking from './cooking.png'
 import landing_bg1 from './landing_bg1.webp'
@@ -26,12 +26,8 @@ import c from './a.png'
 
 export const assets={
     logo,
-    chapati,
-    dosa,
-    idli,
-    upma,
-    uttauppam,
-    pulihora,home,
+    c1,c2,c3,c4,c5,c6
+    ,home,
     cooking,
     landing_bg1,
     building,

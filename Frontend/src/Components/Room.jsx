@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { members } from "../assets/data";
 import { assets } from "../assets/assets";
 import { User, Phone, Briefcase, MapPin, Calendar, Building2, PlusCircle } from "lucide-react";
@@ -13,6 +13,8 @@ const Room = () => {
     const isSingleRoom = roomNumber % 10 === 9;
     const roomMembers = members.filter(member => member.room === roomNumber);
     const capacity = isSingleRoom ? 1 : 3;
+    const navigate = useNavigate();
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-black via-[#0c0c0c] to-black p-6 flex flex-col items-center text-white overflow-hidden">
@@ -37,11 +39,18 @@ const Room = () => {
                                     </div>
                                 ) : (
                                     <div className="flex items-center justify-between px-4 py-2">
-                                        <div className="flex items-center gap-3">
+                                        <div
+                                            onClick={() => navigate('/book')}
+                                            className="flex items-center gap-3 cursor-pointer rounded-lg transition-all"
+                                            role="button"
+                                            tabIndex={0}
+                                            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/book')}
+                                        >
                                             <PlusCircle className="w-10 h-10 text-green-500 animate-pulse" />
-                                            <p className="text-green-200 font-semibold">Available Slot</p>
+                                            <p className="text-green-600 font-semibold">Available slot here You can your slot</p>
                                         </div>
                                     </div>
+
                                 )}
                             </motion.div>
                         );

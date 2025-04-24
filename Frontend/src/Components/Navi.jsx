@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { assets } from '../assets/assets';
 import { Menu, X } from 'lucide-react';
+import { assets } from '../assets/assets';
 
-const Navi = () => {
+const Navi = ({ userInfo, signout }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
   const navLinks = [
     { name: "HOME", to: "/" },
     { name: "LAYOUT", to: "/layout" },
@@ -27,10 +28,25 @@ const Navi = () => {
             ))}
           </ul>
         </div>
-        <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-[#f7931e]">{menuOpen ? <X size={30} /> : <Menu size={30} />}</button>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 cursor-pointer group relative">
+            <img className="w-8 rounded-full" src={assets.f1} alt="User" />
+            {/* <img className="w-2.5"  alt="Dropd/> */}
+            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
+              <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
+                <p onClick={() => navigate('/profile')} className="hover:text-primary cursor-pointer">My Profile</p>
+                <p onClick={() => navigate('/appointments')} className="hover:text-primary cursor-pointer">My Bookings</p>
+                <p onClick={signout} className="hover:text-black cursor-pointer">LOGOUT</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)} className="text-[#f7931e]">{menuOpen ? <X size={30} /> : <Menu size={30} />}</button>
+          </div>
         </div>
       </div>
+
       {menuOpen && (
         <div className="md:hidden w-full flex flex-col items-center bg-black border-t border-[#f7931e] py-4 space-y-4">
           {navLinks.map(link => (

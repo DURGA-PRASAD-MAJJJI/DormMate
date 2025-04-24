@@ -24,7 +24,6 @@ const Contact = () => {
           <button className="px-8 py-3 text-lg font-medium border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300">Book a Room</button>
         </div>
       </div>
-      <PopUp/>
     </div>
   );
 };

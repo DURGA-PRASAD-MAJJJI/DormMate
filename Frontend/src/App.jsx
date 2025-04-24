@@ -10,12 +10,15 @@ import PopUp from "./Components/PopUp";
 import Room from "./Components/Room";
 import Profile from "./pages/Profile";
 import Canteen from "./Components/Canteen";
+import AuthPage from "./Components/AuthPage";
+import Below from "./Components/Below";
+import Book from "./Components/Book";
 
 const App = () => {
     return (
         <div className="min-h-screen bg-black text-white">
             <Navi />
-            <div className="pt-[100px] px-4">
+            <div className="mt-20">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/layout" element={<Layout />} />
@@ -23,11 +26,18 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/popup" element={<PopUp />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/authPage" element={<AuthPage />} />
+                    <Route path="/book" element={<Book />} />
+
+
+
                     <Route path="/canteen" element={<Canteen />} />
                     <Route path="/floor/:floorId" element={<FloorWrapper />} />
                     <Route path="/room/:roomId" element={<Room />} />
                 </Routes>
             </div>
+            <Below/>
+            <PopUp/>
         </div>
     );
 };

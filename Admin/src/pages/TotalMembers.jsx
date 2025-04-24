@@ -3,16 +3,9 @@ import { AnimatePresence } from 'framer-motion';
 import { Loader2, User } from 'lucide-react';
 import AddMember from '../componets/AddMember';
 import { members as initialMembers } from '../assets/data';
-import { 
-  MemberCard,
-  MembersFilter,
-  MembersEmptyState,
-  MembersModal,
-  MembersHeader
-} from '../componets/members';
+import { MemberCard, MembersFilter, MembersEmptyState, MembersModal, MembersHeader } from '../componets/members';
 
 const TotalMembers = () => {
-    // State management
     const [members, setMembers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showAddMember, setShowAddMember] = useState(false);
@@ -21,19 +14,16 @@ const TotalMembers = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    
     const [filters, setFilters] = useState({
         floor: '',
         sharing: '',
         paymentStatus: ''
     });
-    
     const [sortConfig, setSortConfig] = useState({
         key: 'name',
         direction: 'ascending'
     });
 
-    // Check for mobile view
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
@@ -42,19 +32,16 @@ const TotalMembers = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Initialize members data
     useEffect(() => {
         const loadMembers = async () => {
             try {
                 setIsLoading(true);
                 await new Promise(resolve => setTimeout(resolve, 800));
-                
                 const formattedMembers = initialMembers.map(member => ({
                     ...member,
                     image: member.image || `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`,
                     joinDate: new Date(member.joinDate).toISOString()
                 }));
-                
                 setMembers(formattedMembers);
             } catch (err) {
                 setError('Failed to load members. Please try again later.');
@@ -63,17 +50,13 @@ const TotalMembers = () => {
                 setIsLoading(false);
             }
         };
-        
         loadMembers();
     }, []);
 
-    // Sort and filter logic
     const { filteredMembers, floors, sharingTypes } = useMemo(() => {
-        // Sorting logic
         const sorted = [...members].sort((a, b) => {
             const aValue = a[sortConfig.key];
             const bValue = b[sortConfig.key];
-            
             if (aValue < bValue) {
                 return sortConfig.direction === 'ascending' ? -1 : 1;
             }
@@ -83,7 +66,6 @@ const TotalMembers = () => {
             return 0;
         });
 
-        // Filtering logic
         const filtered = sorted.filter(member => {
             const matchesSearch =
                 member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -101,7 +83,6 @@ const TotalMembers = () => {
             return matchesSearch && matchesFilters;
         });
 
-        // Get unique filter options
         const uniqueFloors = [...new Set(members.map(member => member.floor))].sort();
         const uniqueSharingTypes = [...new Set(members.map(member => member.sharing))].sort();
 
@@ -112,7 +93,6 @@ const TotalMembers = () => {
         };
     }, [members, sortConfig, searchTerm, filters]);
 
-    // Event handlers
     const requestSort = useCallback((key) => {
         setSortConfig(prevConfig => ({
             key,
@@ -159,7 +139,6 @@ const TotalMembers = () => {
         setSearchTerm('');
     }, []);
 
-    // Loading state
     if (isLoading) {
         return (
             <div className="flex items-center justify-center h-screen bg-gray-50">
@@ -171,7 +150,6 @@ const TotalMembers = () => {
         );
     }
 
-    // Error state
     if (error) {
         return (
             <div className="flex flex-col bg-gray-50 min-h-full">
@@ -201,7 +179,6 @@ const TotalMembers = () => {
                 setShowAddMember={setShowAddMember}
                 isMobile={isMobile}
             />
-
             {showFilters && (
                 <MembersFilter
                     searchTerm={searchTerm}
@@ -216,7 +193,6 @@ const TotalMembers = () => {
                     isMobile={isMobile}
                 />
             )}
-
             <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
                 {filteredMembers.length > 0 ? (
                     <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'} gap-5`}>
@@ -239,7 +215,6 @@ const TotalMembers = () => {
                     />
                 )}
             </main>
-
             <MembersModal
                 isOpen={showAddMember}
                 onClose={() => {

@@ -1,11 +1,8 @@
-// pages/MembersPage.jsx
-
-import React from 'react';
+import React from 'react'
+import Meal from './Meal';
 import Navi from '../componets/Navi';
 import Header from '../componets/Header';
-import TotalMembers from './TotalMembers';
-
-const MembersPage = () => {
+const Menu = () => {
   return (
     <div className="h-screen bg-gray-100">
       {/* Sidebar */}
@@ -22,11 +19,11 @@ const MembersPage = () => {
 
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto scroll-smooth p-4 sm:p-6">
-          <TotalMembers />
+          <Meal />
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default MembersPage;
+export default Menu

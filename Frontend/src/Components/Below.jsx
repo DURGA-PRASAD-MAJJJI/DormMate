@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Below = () => {
     return (
-        <div className="w-full md:mx-10 text-gray-700">
+        <div className= "px-2 w-full md:mx-10 text-gray-700">
             <div className="flex flex-col sm:grid grid-cols-[2fr_1fr_1fr] gap-10 my-10 mt-28 text-xs sm:text-sm">
                 <div>
                     <img className="mb-4 w-32" src={assets.logo} alt="Logo" />
@@ -26,9 +26,11 @@ const Below = () => {
                     </ul>
                 </div>
             </div>
-            <div className="text-center border-t border-[#f7931e] pt-5 text-xs text-gray-500">
+           <div className='pr-16'>
+           <div className="text-center border-t border-[#f7931e] pt-5 text-xs text-gray-500">
                 <p>© 2025 DormMate - All Rights Reserved</p>
             </div>
+           </div>
         </div>
     );
 };

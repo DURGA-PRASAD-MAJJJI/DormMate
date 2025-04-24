@@ -24,7 +24,6 @@ const About = () => {
           <img className="w-full max-w-xs sm:max-w-sm md:max-w-[520px] h-[520px] rounded-3xl shadow-2xl object-cover border-4 border-primary" src={assets.c} alt="About Us"/>
         </div>
       </div>
-      <div className="mt-12"><PopUp/></div>
     </div>
   );
 };

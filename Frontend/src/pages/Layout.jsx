@@ -1,7 +1,5 @@
 import React from 'react';
-import PopUp from '../Components/PopUp';
 import { assets } from '../assets/assets';
-import Below from '../Components/Below';
 import { useNavigate } from 'react-router-dom';
 
 const Layout = () => {
@@ -50,9 +48,6 @@ const Layout = () => {
           <p className="text-gray-300 leading-relaxed text-sm md:text-base">Find our hostel in a prime location, ensuring accessibility and convenience for all residents.</p>
         </div>
       </div>
-
-      <PopUp />
-      <Below />
     </div>
   );
 };

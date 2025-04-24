@@ -11,8 +11,7 @@ const Home = () => {
         <Header />
       </header>
       <Navi/>
-      {/* Main content area */}
-      <main className="pt-16 min-h-screen"> {/* pt-16 matches header height */}
+            <main className="pt-16 min-h-screen"> {/* pt-16 matches header height */}
         <Outlet /> {/* This will render your Dashboard component */}
       </main>
     </div>
